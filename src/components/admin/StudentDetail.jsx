@@ -193,4 +193,180 @@ export default function StudentDetail({ student, onBack }) {
         </div>
         <div className="stat-card new-gatha-stat">
           <FaBook className="stat-icon" />
-          <div 
+          <div className="stat-info">
+            <span className="stat-value">{stats.newGatha}</span>
+            <span className="stat-label">{t('newGatha')}</span>
+          </div>
+        </div>
+        <div className="stat-card revision-stat">
+          <FaBook className="stat-icon" />
+          <div className="stat-info">
+            <span className="stat-value">{stats.revisionGatha}</span>
+            <span className="stat-label">{t('revisionGatha')}</span>
+          </div>
+        </div>
+        <div className="stat-card total-stat">
+          <FaChartBar className="stat-icon" />
+          <div className="stat-info">
+            <span className="stat-value">{stats.newGatha + stats.revisionGatha}</span>
+            <span className="stat-label">{t('totalGathaLearned')}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="detail-tabs">
+        <button 
+          className={`tab ${activeTab === 'overview' ? 'active' : ''}`}
+          onClick={() => setActiveTab('overview')}
+        >
+          {t('overview')}
+        </button>
+        <button 
+          className={`tab ${activeTab === 'attendance' ? 'active' : ''}`}
+          onClick={() => setActiveTab('attendance')}
+        >
+          {t('attendance')}
+        </button>
+        <button 
+          className={`tab ${activeTab === 'gatha' ? 'active' : ''}`}
+          onClick={() => setActiveTab('gatha')}
+        >
+          {t('gatha')}
+        </button>
+        <button 
+          className={`tab ${activeTab === 'charts' ? 'active' : ''}`}
+          onClick={() => setActiveTab('charts')}
+        >
+          {t('charts')}
+        </button>
+      </div>
+
+      {activeTab === 'overview' && (
+        <div className="overview-section">
+          <div className="recent-section">
+            <h3>{t('recentAttendance')}</h3>
+            <div className="recent-list">
+              {attendance.slice(0, 5).map((record) => (
+                <div key={record.id} className="recent-item">
+                  <span>{format(new Date(record.date), 'dd MMM yyyy')}</span>
+                  <span className={`status ${record.status}`}>
+                    {getStatusIcon(record.status)} {t(record.status)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="recent-section">
+            <h3>{t('recentGatha')}</h3>
+            <div className="recent-list">
+              {gatha.slice(0, 5).map((record) => (
+                <div key={record.id} className="recent-item gatha-item">
+                  <div className="gatha-info">
+                    <span className={`type-badge ${record.type}`}>
+                      {record.type === 'new' ? t('new') : t('revision')}
+                    </span>
+                    <span>{record.sutraName}</span>
+                    <span className="gatha-count">{record.gathaNo}/{record.totalGatha}</span>
+                  </div>
+                  <span className={`status ${record.status}`}>
+                    {getStatusIcon(record.status)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'attendance' && (
+        <div className="records-section">
+          <div className="section-header">
+            <h3><FaCalendar /> {t('attendanceHistory')}</h3>
+            <input 
+              type="month" 
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+            />
+          </div>
+          <div className="records-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>{t('date')}</th>
+                  <th>{t('status')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredAttendance.map((record) => (
+                  <tr key={record.id}>
+                    <td>{format(new Date(record.date), 'dd MMM yyyy')}</td>
+                    <td className={`status ${record.status}`}>
+                      {getStatusIcon(record.status)} {t(record.status)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'gatha' && (
+        <div className="records-section">
+          <div className="section-header">
+            <h3><FaBook /> {t('gathaHistory')}</h3>
+            <input 
+              type="month" 
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+            />
+          </div>
+          <div className="records-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>{t('date')}</th>
+                  <th>{t('type')}</th>
+                  <th>{t('sutra')}</th>
+                  <th>{t('gatha')}</th>
+                  <th>{t('status')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredGatha.map((record) => (
+                  <tr key={record.id}>
+                    <td>{format(new Date(record.date), 'dd MMM yyyy')}</td>
+                    <td>
+                      <span className={`type-badge ${record.type}`}>
+                        {record.type === 'new' ? t('new') : t('revision')}
+                      </span>
+                    </td>
+                    <td>{record.sutraName}</td>
+                    <td>{record.gathaNo}/{record.totalGatha}</td>
+                    <td className={`status ${record.status}`}>
+                      {getStatusIcon(record.status)} {t(record.status)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'charts' && (
+        <div className="charts-section">
+          <div className="chart-container">
+            <h3>{t('monthlyAttendance')}</h3>
+            <AttendanceChart data={stats.monthlyData} />
+          </div>
+          <div className="chart-container">
+            <h3>{t('gathaProgress')}</h3>
+            <GathaProgressChart data={stats.monthlyData} />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
