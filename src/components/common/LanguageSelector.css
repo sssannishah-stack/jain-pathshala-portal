@@ -1,0 +1,86 @@
+.language-selector {
+  position: relative;
+}
+
+.language-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-sm);
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.language-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* When used in navbar with light background */
+.navbar .language-button {
+  background: var(--bg-light);
+  border-color: var(--border-color);
+  color: var(--text-dark);
+}
+
+.navbar .language-button:hover {
+  background: var(--border-color);
+}
+
+.globe-icon {
+  font-size: 1rem;
+}
+
+.chevron {
+  font-size: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+.language-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: white;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-lg);
+  list-style: none;
+  min-width: 150px;
+  overflow: hidden;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  color: var(--text-dark);
+}
+
+.language-option:hover {
+  background: var(--bg-light);
+}
+
+.language-option.selected {
+  background: var(--primary-color);
+  color: white;
+}
+
+.lang-name {
+  font-weight: 500;
+}
+
+.check-icon {
+  font-size: 0.8rem;
+}
