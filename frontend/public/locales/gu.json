@@ -1,0 +1,104 @@
+// public/locales/gu/translation.json
+{
+  "common": {
+    "appName": "જૈન પાઠશાળા",
+    "welcome": "સ્વાગત છે",
+    "login": "લૉગ ઇન",
+    "logout": "લૉગ આઉટ",
+    "dashboard": "ડેશબોર્ડ",
+    "history": "ઇતિહાસ",
+    "reports": "રિપોર્ટ",
+    "students": "વિદ્યાર્થીઓ",
+    "save": "સાચવો",
+    "cancel": "રદ કરો",
+    "delete": "કાઢી નાખો",
+    "edit": "સંપાદિત કરો",
+    "approve": "મંજૂર કરો",
+    "reject": "નામંજૂર કરો",
+    "pending": "બાકી",
+    "approved": "મંજૂર",
+    "rejected": "નામંજૂર",
+    "loading": "લોડ થઈ રહ્યું છે...",
+    "noData": "કોઈ ડેટા મળ્યો નથી",
+    "success": "સફળતા",
+    "error": "ભૂલ",
+    "confirm": "પુષ્ટિ કરો",
+    "jaiJinendra": "જય જિનેન્દ્ર"
+  },
+  "auth": {
+    "email": "ઇમેઇલ",
+    "password": "પાસવર્ડ",
+    "loginButton": "લૉગ ઇન કરો",
+    "loggingIn": "લૉગ ઇન થઈ રહ્યું છે...",
+    "invalidCredentials": "અમાન્ય ઇમેઇલ અથવા પાસવર્ડ",
+    "loginSuccess": "લૉગ ઇન સફળ!"
+  },
+  "attendance": {
+    "title": "હાજરી નોંધો",
+    "markPresent": "હાજર નોંધો",
+    "marking": "નોંધાઈ રહ્યું છે...",
+    "todayDate": "આજની તારીખ",
+    "alreadyMarked": "આજની હાજરી પહેલેથી નોંધાયેલ છે",
+    "markedSuccess": "હાજરી નોંધાઈ! મંજૂરીની રાહ જોઈ રહ્યા છીએ.",
+    "selectMember": "કૃપા કરીને પહેલા સભ્ય પસંદ કરો"
+  },
+  "gatha": {
+    "title": "ગાથા ઉમેરો",
+    "new": "નવી",
+    "revision": "પુનરાવર્તન",
+    "sutraName": "સૂત્રનું નામ",
+    "selectSutra": "સૂત્ર પસંદ કરો",
+    "customSutra": "અન્ય સૂત્રનું નામ",
+    "gathaNo": "ગાથા નંબર",
+    "totalGatha": "કુલ ગાથા",
+    "addGatha": "ગાથા ઉમેરો",
+    "adding": "ઉમેરાઈ રહ્યું છે...",
+    "addedSuccess": "ગાથા ઉમેરાઈ! મંજૂરીની રાહ જોઈ રહ્યા છીએ.",
+    "fillAllFields": "કૃપા કરીને બધી ફીલ્ડ ભરો"
+  },
+  "member": {
+    "selectMember": "સભ્ય પસંદ કરો",
+    "members": "સભ્યો",
+    "addMember": "સભ્ય ઉમેરો",
+    "memberName": "સભ્યનું નામ",
+    "groupName": "જૂથનું નામ"
+  },
+  "admin": {
+    "pendingApprovals": "બાકી મંજૂરીઓ",
+    "allStudents": "બધા વિદ્યાર્થીઓ",
+    "monthlyReport": "માસિક રિપોર્ટ",
+    "approveAll": "બધા મંજૂર કરો",
+    "rejectAll": "બધા નામંજૂર કરો",
+    "bulkActions": "જથ્થાબંધ ક્રિયાઓ",
+    "addMembers": "સભ્યો ઉમેરો",
+    "exportPDF": "PDF નિકાસ કરો",
+    "exportExcel": "Excel નિકાસ કરો",
+    "totalPresent": "કુલ હાજરી",
+    "newGatha": "નવી ગાથા",
+    "revisionGatha": "પુનરાવર્તન ગાથા"
+  },
+  "reports": {
+    "title": "રિપોર્ટ",
+    "monthly": "માસિક",
+    "weekly": "સાપ્તાહિક",
+    "yearly": "વાર્ષિક",
+    "attendanceReport": "હાજરી રિપોર્ટ",
+    "gathaReport": "ગાથા પ્રગતિ રિપોર્ટ",
+    "selectMonth": "મહિનો પસંદ કરો",
+    "selectYear": "વર્ષ પસંદ કરો",
+    "generate": "રિપોર્ટ બનાવો",
+    "download": "ડાઉનલોડ કરો"
+  },
+  "sutra": {
+    "namokarMantra": "ણમોકાર મંત્ર",
+    "pratikramanSutra": "પ્રતિક્રમણ સૂત્ર",
+    "samayikSutra": "સામાયિક સૂત્ર",
+    "bhaktamarStotra": "ભક્તામર સ્તોત્ર",
+    "kalyanMandirStotra": "કલ્યાણ મંદિર સ્તોત્ર",
+    "logassaSutra": "લોગસ્સ સૂત્ર",
+    "uvasagharamStotra": "ઉવસગ્ગહરં સ્તોત્ર",
+    "dashvaikalikSutra": "દશવૈકાલિક સૂત્ર",
+    "uttaradhyayanSutra": "ઉત્તરાધ્યયન સૂત્ર",
+    "other": "અન્ય"
+  }
+}
