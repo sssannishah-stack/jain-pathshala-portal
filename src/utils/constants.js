@@ -1,14 +1,18 @@
+// src/utils/constants.js
+
 export const SUTRA_LIST = [
-  { id: 'namokar', name: 'Namokar Mantra', nameHi: 'णमोकार मंत्र', nameGu: 'ણમોકાર મંત્ર' },
-  { id: 'pratikraman', name: 'Pratikraman Sutra', nameHi: 'प्रतिक्रमण सूत्र', nameGu: 'પ્રતિક્રમણ સૂત્ર' },
-  { id: 'samayik', name: 'Samayik Sutra', nameHi: 'सामायिक सूत्र', nameGu: 'સામાયિક સૂત્ર' },
-  { id: 'bhaktamar', name: 'Bhaktamar Stotra', nameHi: 'भक्तामर स्तोत्र', nameGu: 'ભક્તામર સ્તોત્ર' },
-  { id: 'kalyanmandir', name: 'Kalyan Mandir Stotra', nameHi: 'कल्याण मंदिर स्तोत्र', nameGu: 'કલ્યાણ મંદિર સ્તોત્ર' },
-  { id: 'logassa', name: 'Logassa Sutra', nameHi: 'लोगस्स सूत्र', nameGu: 'લોગસ્સ સૂત્ર' },
-  { id: 'uvasagharam', name: 'Uvasagharam Stotra', nameHi: 'उवसग्गहरं स्तोत्र', nameGu: 'ઉવસગ્ગહરં સ્તોત્ર' },
-  { id: 'dashvaikalik', name: 'Dashvaikalik Sutra', nameHi: 'दशवैकालिक सूत्र', nameGu: 'દશવૈકાલિક સૂત્ર' },
-  { id: 'uttaradhyayan', name: 'Uttaradhyayan Sutra', nameHi: 'उत्तराध्ययन सूत्र', nameGu: 'ઉત્તરાધ્યયન સૂત્ર' },
-  { id: 'other', name: 'Other', nameHi: 'अन्य', nameGu: 'અન્ય' }
+  { key: 'Namokar Mantra', name: 'णमोकार मंत्र (Namokar Mantra)' },
+  { key: 'Pratikraman Sutra', name: 'प्रतिक्रमण सूत्र (Pratikraman Sutra)' },
+  { key: 'Samayik Sutra', name: 'सामायिक सूत्र (Samayik Sutra)' },
+  { key: 'Bhaktamar Stotra', name: 'भक्तामर स्तोत्र (Bhaktamar Stotra)' },
+  { key: 'Kalyan Mandir Stotra', name: 'कल्याण मंदिर स्तोत्र (Kalyan Mandir Stotra)' },
+  { key: 'Logassa Sutra', name: 'लोगस्स सूत्र (Logassa Sutra)' },
+  { key: 'Uvasagharam Stotra', name: 'उवसग्गहरं स्तोत्र (Uvasagharam Stotra)' },
+  { key: 'Dashvaikalik Sutra', name: 'दशवैकालिक सूत्र (Dashvaikalik Sutra)' },
+  { key: 'Uttaradhyayan Sutra', name: 'उत्तराध्ययन सूत्र (Uttaradhyayan Sutra)' },
+  { key: 'Tattvartha Sutra', name: 'तत्त्वार्थ सूत्र (Tattvartha Sutra)' },
+  { key: 'Sthanang Sutra', name: 'स्थानांग सूत्र (Sthanang Sutra)' },
+  { key: 'Other', name: 'अन्य (Other)' }
 ];
 
 export const GATHA_TYPES = {
@@ -33,17 +37,8 @@ export const LANGUAGES = {
   GU: 'gu'
 };
 
-export const MONTHS = [
-  { value: 0, en: 'January', hi: 'जनवरी', gu: 'જાન્યુઆરી' },
-  { value: 1, en: 'February', hi: 'फरवरी', gu: 'ફેબ્રુઆરી' },
-  { value: 2, en: 'March', hi: 'मार्च', gu: 'માર્ચ' },
-  { value: 3, en: 'April', hi: 'अप्रैल', gu: 'એપ્રિલ' },
-  { value: 4, en: 'May', hi: 'मई', gu: 'મે' },
-  { value: 5, en: 'June', hi: 'जून', gu: 'જૂન' },
-  { value: 6, en: 'July', hi: 'जुलाई', gu: 'જુલાઈ' },
-  { value: 7, en: 'August', hi: 'अगस्त', gu: 'ઓગસ્ટ' },
-  { value: 8, en: 'September', hi: 'सितंबर', gu: 'સપ્ટેમ્બર' },
-  { value: 9, en: 'October', hi: 'अक्टूबर', gu: 'ઓક્ટોબર' },
-  { value: 10, en: 'November', hi: 'नवंबर', gu: 'નવેમ્બર' },
-  { value: 11, en: 'December', hi: 'दिसंबर', gu: 'ડિસેમ્બર' }
+export const LANGUAGE_OPTIONS = [
+  { code: 'en', name: 'English', nativeName: 'English' },
+  { code: 'hi', name: 'Hindi', nativeName: 'हिंदी' },
+  { code: 'gu', name: 'Gujarati', nativeName: 'ગુજરાતી' }
 ];
