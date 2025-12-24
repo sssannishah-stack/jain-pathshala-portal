@@ -1,0 +1,92 @@
+.attendance-form {
+  padding: 2rem;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.form-header h3 {
+  color: var(--text-dark);
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.date-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: var(--bg-light);
+  border-radius: var(--border-radius-md);
+  margin-bottom: 1.5rem;
+}
+
+.date-display span {
+  color: var(--text-light);
+}
+
+.date-display strong {
+  color: var(--text-dark);
+  font-size: 1.1rem;
+}
+
+.mark-btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+.mark-btn .spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 0.5rem;
+}
+
+.checking-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  color: var(--text-light);
+}
+
+.checking-status .spin {
+  animation: spin 1s linear infinite;
+}
+
+.already-marked {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: #d4edda;
+  color: #155724;
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+}
+
+.success-icon {
+  font-size: 1.25rem;
+}
+
+.hint-text {
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
