@@ -1,62 +1,135 @@
-import axios from 'axios';
+// src/services/api.js
+import { auth } from "./firebase";
 
-const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
-
-const api = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-// Add auth token to requests
-api.interceptors.request.use(
-  async (config) => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+// Base URL for API
+const getBaseUrl = () => {
+  if (process.env.NODE_ENV === "development") {
+    // Use emulator in development if configured
+    if (process.env.REACT_APP_USE_EMULATOR === "true") {
+      return "http://localhost:5001/YOUR_PROJECT_ID/us-central1/api";
     }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
   }
-);
+  // Production URL
+  return `https://us-central1-${process.env.REACT_APP_FIREBASE_PROJECT_ID}.cloudfunctions.net/api`;
+};
 
-// API endpoints
-export const apiService = {
-  // Auth
-  login: (email, password) => api.post('/api/auth/login', { email, password }),
+const BASE_URL = getBaseUrl();
+
+// Get auth token
+const getToken = async () => {
+  const user = auth.currentUser;
+  if (user) {
+    return await user.getIdToken();
+  }
+  return null;
+};
+
+// API request helper
+const apiRequest = async (endpoint, options = {}) => {
+  const token = await getToken();
   
-  // Users
-  getUsers: () => api.get('/api/users'),
-  createUser: (userData) => api.post('/api/users', userData),
-  updateUser: (userId, userData) => api.put(`/api/users/${userId}`, userData),
-  deleteUser: (userId) => api.delete(`/api/users/${userId}`),
-  addMember: (userId, memberData) => api.post(`/api/users/${userId}/members`, memberData),
+  const headers = {
+    "Content-Type": "application/json",
+    ...options.headers,
+  };
+  
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+  
+  const response = await fetch(`${BASE_URL}${endpoint}`, {
+    ...options,
+    headers,
+  });
+  
+  const data = await response.json();
+  
+  if (!response.ok) {
+    throw new Error(data.message || "API request failed");
+  }
+  
+  return data;
+};
+
+// API methods
+const api = {
+  // Health check
+  health: () => apiRequest("/health"),
+  
+  // Auth
+  getMe: () => apiRequest("/auth/me"),
   
   // Attendance
-  getAttendance: (params) => api.get('/api/attendance', { params }),
-  markAttendance: (data) => api.post('/api/attendance', data),
-  approveAttendance: (id) => api.put(`/api/attendance/${id}/approve`),
-  rejectAttendance: (id) => api.put(`/api/attendance/${id}/reject`),
-  bulkApproveAttendance: (ids) => api.post('/api/attendance/bulk-approve', { ids }),
+  markAttendance: (data) => apiRequest("/attendance/mark", {
+    method: "POST",
+    body: JSON.stringify(data),
+  }),
+  
+  getAttendanceHistory: (memberId, params = {}) => {
+    const query = new URLSearchParams(params).toString();
+    return apiRequest(`/attendance/history/${memberId}?${query}`);
+  },
+  
+  checkTodayAttendance: (memberId) => apiRequest(`/attendance/today/${memberId}`),
   
   // Gatha
-  getGatha: (params) => api.get('/api/gatha', { params }),
-  addGatha: (data) => api.post('/api/gatha', data),
-  approveGatha: (id) => api.put(`/api/gatha/${id}/approve`),
-  rejectGatha: (id) => api.put(`/api/gatha/${id}/reject`),
-  bulkApproveGatha: (ids) => api.post('/api/gatha/bulk-approve', { ids }),
+  addGatha: (data) => apiRequest("/gatha/add", {
+    method: "POST",
+    body: JSON.stringify(data),
+  }),
+  
+  getGathaHistory: (memberId, params = {}) => {
+    const query = new URLSearchParams(params).toString();
+    return apiRequest(`/gatha/history/${memberId}?${query}`);
+  },
+  
+  getGathaStats: (memberId) => apiRequest(`/gatha/stats/${memberId}`),
+  
+  // Admin
+  getPending: () => apiRequest("/admin/pending"),
+  
+  approve: (type, id) => apiRequest(`/admin/approve/${type}/${id}`, {
+    method: "POST",
+  }),
+  
+  reject: (type, id) => apiRequest(`/admin/reject/${type}/${id}`, {
+    method: "POST",
+  }),
+  
+  approveAll: (type) => apiRequest(`/admin/approve-all/${type}`, {
+    method: "POST",
+  }),
+  
+  getStudents: () => apiRequest("/admin/students"),
+  
+  addMember: (userId, name) => apiRequest(`/admin/students/${userId}/members`, {
+    method: "POST",
+    body: JSON.stringify({ name }),
+  }),
+  
+  getStudentDetails: (memberId, params = {}) => {
+    const query = new URLSearchParams(params).toString();
+    return apiRequest(`/admin/students/${memberId}/details?${query}`);
+  },
   
   // Reports
-  getMonthlyReport: (year, month) => api.get(`/api/reports/monthly/${year}/${month}`),
-  getStudentReport: (memberId, startDate, endDate) => 
-    api.get(`/api/reports/student/${memberId}`, { params: { startDate, endDate } }),
-  exportReport: (type, params) => api.get(`/api/reports/export/${type}`, { 
-    params, 
-    responseType: 'blob' 
+  getMonthlyReport: (memberId, year, month) => 
+    apiRequest(`/reports/monthly/${memberId}?year=${year}&month=${month}`),
+  
+  getProgressChart: (memberId, months = 6) => 
+    apiRequest(`/reports/progress/${memberId}?months=${months}`),
+  
+  // User
+  getProfile: () => apiRequest("/user/profile"),
+  
+  updateProfile: (data) => apiRequest("/user/profile", {
+    method: "PUT",
+    body: JSON.stringify(data),
   }),
+  
+  // Languages
+  getLanguages: () => apiRequest("/languages"),
+  getTranslations: (lang) => apiRequest(`/translations/${lang}`),
 };
 
 export default api;
